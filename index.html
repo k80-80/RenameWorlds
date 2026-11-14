@@ -693,7 +693,7 @@ function buildDistrict(w, d) {
     '<label for="' + nid + '"><b>District Name</b></label><div class="namerow"><input type="text" id="' + nid + '" maxlength="100">' +
     '<button type="button" class="reset randomize">Randomize</button></div>' +
     '<label for="' + did + '"><b>Description</b></label><textarea id="' + did + '" maxlength="2000"></textarea></label></div>';
-  card.querySelector('.orig').textContent = '<b>Original:</b> ' + d.name;
+  card.querySelector('.orig').textContent = 'Original: ' + d.name;
   var ni = card.querySelector('#' + nid), di = card.querySelector('#' + did);
   ni.value = valueOf(d.nk); di.value = toDisplay(valueOf(d.dk));
   var tile = card.querySelector('.tile'), links = card.querySelector('.iconlinks');
