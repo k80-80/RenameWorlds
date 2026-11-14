@@ -1119,7 +1119,7 @@ window.addEventListener('load', function () {
 function applyBgOnly() {
   var b = document.getElementById('bgonly');
   b.setAttribute('aria-pressed', String(bgOnly));
-  b.textContent = bgOnly ? 'Show All Worlds' : 'Base Game Only';
+  b.textContent = bgOnly ? '<b>Show All Worlds</b>' : '<b>Base Game Only</b>';
   WORLDS.forEach(function (w) { if (w.detailsEl) w.detailsEl.hidden = bgOnly && !w.bg; });
 }
 document.getElementById('bgonly').addEventListener('click', function () {
