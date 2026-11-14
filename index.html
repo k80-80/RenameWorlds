@@ -274,24 +274,24 @@ img {
   <div class="tool-row">
     <label class="btn" for="openfile"
 title="Open a .package you've already edited (default name is midnitetech_RenameDistricts)">
-Open Existing Package<input type="file" id="openfile" accept=".package"></label>
+<b>Open Existing Package</b><input type="file" id="openfile" accept=".package"></label>
 
     <button type="button" id="bgonly" aria-pressed="false"
 title="Toggle World Selection">
-Base Game Only</button>
+<b>Base Game Only</b></button>
 
     <button type="button" id="resetall"
         title="Restore every district to its original name and icon">
-  Reset All
+  <b>Reset All</b>
 </button>
 
     <button type="button" id="download"
 title="Download the updated .package to your /Mods folder and load the game to see your changes.">
-Download Package</button>
+<b>Download Package</b></button>
 
     <a class="btn" id="assets" href="http://www.simfileshare.net/download/6350855/" download
 title="Download .pngs extracted from the game, and edit them in your chosen program to customize your World icons even more! (Optional)">
-Download Assets</a>
+<b>Download Assets</b></a>
   </div>
   <span class="status" id="status" role="status"></span>
 </div>
@@ -690,10 +690,10 @@ function buildDistrict(w, d) {
   card.innerHTML =
     '<div class="iconcol"><div class="tile"></div><div class="iconlinks"></div></div>' +
     '<div class="fields"><div class="head"><span class="orig"></span><button type="button" class="reset">Reset</button></div>' +
-    '<label for="' + nid + '">District Name</label><div class="namerow"><input type="text" id="' + nid + '" maxlength="100">' +
+    '<label for="' + nid + '"><b>District Name</b></label><div class="namerow"><input type="text" id="' + nid + '" maxlength="100">' +
     '<button type="button" class="reset randomize">Randomize</button></div>' +
-    '<label for="' + did + '">Description<textarea id="' + did + '" maxlength="2000"></textarea></label></div>';
-  card.querySelector('.orig').textContent = 'Original: ' + d.name;
+    '<label for="' + did + '"><b>Description</b></label><textarea id="' + did + '" maxlength="2000"></textarea></label></div>';
+  card.querySelector('.orig').textContent = '<b>Original:</b> ' + d.name;
   var ni = card.querySelector('#' + nid), di = card.querySelector('#' + did);
   ni.value = valueOf(d.nk); di.value = toDisplay(valueOf(d.dk));
   var tile = card.querySelector('.tile'), links = card.querySelector('.iconlinks');
@@ -711,7 +711,7 @@ function buildDistrict(w, d) {
     img.src = state.icons[d.nk] ? state.icons[d.nk].preview : d.png;
     tile.appendChild(img);
     var choose = document.createElement('button');
-    choose.type = 'button'; choose.className = 'iconbtn'; choose.textContent = 'Choose District Icon';
+    choose.type = 'button'; choose.className = 'iconbtn'; choose.textContent = '<b>Choose District Icon</b>';
     choose.addEventListener('click', function () {
       openPicker(d, function (src, label) {
         makeIcon(src, d.iw, d.ih, false).then(function (icon) {
@@ -723,11 +723,11 @@ function buildDistrict(w, d) {
     links.appendChild(choose);
     var pick = document.createElement('label');
     pick.className = 'iconbtn'; pick.setAttribute('for', fid);
-    pick.innerHTML = 'Upload Your Own<input type="file" id="' + fid + '" accept="image/png,image/webp,image/gif,image/jpeg">';
+    pick.innerHTML = '<b>Upload Your Own</b><input type="file" id="' + fid + '" accept="image/png,image/webp,image/gif,image/jpeg">';
     links.appendChild(pick);
     var white = document.createElement('label');
     white.className = 'white'; white.setAttribute('for', wid);
-    white.innerHTML = '<input type="checkbox" id="' + wid + '" checked> Make White';
+    white.innerHTML = '<input type="checkbox" id="' + wid + '" checked> <b>Make White</b>';
     links.appendChild(white);
     pick.querySelector('input').addEventListener('change', function (ev) {
       var file = ev.target.files[0]; ev.target.value = '';
