@@ -300,7 +300,7 @@ Download Assets</a>
   <summary><span aria-hidden="true">ℹ️</span> How to Use the District Editor</summary>
   <ol>
     <li>
-      <strong><span style="text-decoration: underline;">World Name</span><br /></strong>Use <strong>Rename Worlds*</strong> from a Mailbox in-game to rename the world itself. To make the new name appear in your district descriptions and <strong>World Select Description</strong>, add those fields in this editor too.
+      <strong><span style="text-decoration: underline;"><b>World Name</b></span><br /></strong>Use <strong>Rename Worlds*</strong> from a Mailbox in-game to rename the world itself. To make the new name appear in your district descriptions and <strong>World Select Description</strong>, add those fields in this editor too.
 <p data-pm-slice="1 1 []"><em>Editing the world description in-game only updates the text shown in <strong>Map View</strong>. To change the text shown when you hover over the world in <strong>World Select</strong>, edit the <strong>World Select Description</strong> here.<br /></em></p>
     </li>
 
@@ -462,7 +462,7 @@ function renderSummary() {
     box.innerHTML = 'Click a World to Start. <span class="meta">Use Mailbox → Rename Worlds to Edit the World Names In-Game.</span>';
   } else {
     box.className = 'good';
-    box.innerHTML = 'Ready to Download: <span class="meta">' + names + ' district' + (names === 1 ? '' : 's') + ' changed, '
+    box.innerHTML = '<b>Ready to Download:</b> <span class="meta">' + names + ' district' + (names === 1 ? '' : 's') + ' changed, '
       + icons + ' new icon' + (icons === 1 ? '' : 's') + (wdescs ? ', ' + wdescs + ' World Select Description' + (wdescs === 1 ? '' : 's') : '')
       + (pics ? ', ' + pics + ' World Select picture' + (pics === 1 ? '' : 's') : '')
       + ', across ' + worlds + ' world' + (worlds === 1 ? '' : 's') + '.</span>';
@@ -503,7 +503,7 @@ function buildWorldRow(w) {
   var row = document.createElement('div');
   row.className = 'worldrow';
   var id = 'wn' + WORLDS.indexOf(w);
-  row.innerHTML = '<label for="' + id + '">World Name (Edit From Mailbox → Rename Worlds)<input type="text" id="' + id + '" maxlength="100"></label>'
+  row.innerHTML = '<label for="' + id + '"><b>World Name</b> (Edit From Mailbox → Rename Worlds)<input type="text" id="' + id + '" maxlength="100"></label>'
     + '<p class="meta"></p>';
   var input = row.querySelector('input');
   input.placeholder = w.world;
@@ -522,9 +522,9 @@ function buildWorldRow(w) {
     var did = 'wd' + WORLDS.indexOf(w);
     var box = document.createElement('div');
     box.className = 'wdesc';
-    box.innerHTML = '<div class="wdesc-head"><label for="' + did + '">World Select Description</label><button type="button" class="reset">Reset</button></div>'
+    box.innerHTML = '<div class="wdesc-head"><label for="' + did + '"><b>World Select Description</b></label><button type="button" class="reset">Reset</button></div>'
       + '<textarea id="' + did + '" maxlength="2000"></textarea>'
-      + '<p class="meta">This is the text shown when you hover over the world in World Select. The description on the in-game map can be edited from the Map View.</p>';
+      + '<p class="meta">This is the text shown when you hover over the world in <b>World Select</b>. The description on the in-game map can be edited from the Map View.</p>';
     var ta = box.querySelector('textarea');
     ta.value = toDisplay(valueOf(w.wdk));
     ta.addEventListener('input', function () { setText(w.wdk, toStbl(ta.value)); updateWorldCount(w); renderSummary(); });
@@ -546,11 +546,11 @@ function buildPictureBox(w) {
   var box = document.createElement('div');
   box.className = 'wpic';
   var idx = WORLDS.indexOf(w), bgId = 'pb' + idx, scId = 'ps' + idx, upId = 'pu' + idx, ovId = 'po' + idx;
-  box.innerHTML = '<canvas class="wpic-circle" width="224" height="224"></canvas><div class="wpic-side"><div class="wpic-title">World Select Icon</div>'
-    + '<div class="wpic-row"><label for="' + bgId + '">Background</label><select id="' + bgId + '"><option value="original">Original</option><option value="upload">Your own picture…</option>' + worldOptions('bg') + '</select>'
+  box.innerHTML = '<canvas class="wpic-circle" width="224" height="224"></canvas><div class="wpic-side"><div class="wpic-title"><b>World Select Icon</b></div>'
+    + '<div class="wpic-row"><label for="' + bgId + '"><b>Background</b></label><select id="' + bgId + '"><option value="original">Original</option><option value="upload">Your own picture…</option>' + worldOptions('bg') + '</select>'
     + '<label class="reset wpic-file" for="' + upId + '">Choose Image<input type="file" id="' + upId + '" accept="image/png,image/jpeg,image/webp,image/gif"></label></div>'
-    + '<div class="wpic-row"><label for="' + scId + '">Scenery</label><select id="' + scId + '"><option value="original">Original</option><option value="none">None</option>' + worldOptions('sc') + '</select></div>'
-    + '<div class="wpic-row"><span class="wpic-label">Overlay</span><label class="reset wpic-file" for="' + ovId + '">Upload Your Own PNG<input type="file" id="' + ovId + '" accept="image/png,image/webp,image/gif"></label><button type="button" class="reset wpic-ovremove">Remove Overlay</button></div>'
+    + '<div class="wpic-row"><label for="' + scId + '"><b>Scenery</b></label><select id="' + scId + '"><option value="original">Original</option><option value="none">None</option>' + worldOptions('sc') + '</select></div>'
+    + '<div class="wpic-row"><span class="wpic-label"><b>Overlay</b></span><label class="reset wpic-file" for="' + ovId + '">Upload Your Own PNG<input type="file" id="' + ovId + '" accept="image/png,image/webp,image/gif"></label><button type="button" class="reset wpic-ovremove">Remove Overlay</button></div>'
     + '<div class="wpic-row"><button type="button" class="reset wpic-undo">Use Original</button></div>'
     + '<p class="meta">Mix & match backdrops with any world\'s scenery, or use your own square image. Transparent PNG overlays appear in front of the sky. Game scenery stays animated; custom images stay still. Changes the icon in all saves. <strong><a href="http://www.simfileshare.net/download/6350855/">Download Assets</a></strong> to create your own in your chosen image editor.</p></div>';
   var canvas = box.querySelector('canvas'), ctx = canvas.getContext('2d');
